@@ -1,40 +1,37 @@
 // 23
-// rasti daliklius
-function dalikliai(n) {
-    let s = 0
-    for (let i = 1; i <= n/2; i++) {
-        if (n % i === 0) {
-            s += i
+function rastDaliklius(skaicius) {
+    let suma = 0
+    for (let i = 1; i <= skaicius / 2; i++) {
+        // dalijasi be liekanos
+        if (skaicius % i === 0) {
+            suma += i
         }
     }
-    return s
+    return suma
 }
-// surasti gausius skaicius
-let gausus = []
+let gaususSkaiciai = []
 for (let i = 1; i <= 28123; i++) {
-    if (dalikliai(i) > i) {
-        gausus.push(i)
+    let dalikliuSuma = rastDaliklius(i)
+    if (dalikliuSuma > i) {
+        gaususSkaiciai.push(i)
     }
 }
-// kurie gali but
-let gali = []
+let galiButiSuma = []
 for (let i = 0; i <= 28123; i++) {
-    gali[i] = false
+    galiButiSuma[i] = false
 }
-// visu sumos
-for (let i = 0; i < gausus.length; i++) {
-    for (let j = i; j < gausus.length; j++) {
-        let suma = gausus[i] + gausus[j]
+for (let i = 0; i < gaususSkaiciai.length; i++) {
+    for (let j = i; j < gaususSkaiciai.length; j++) {
+        let suma = gaususSkaiciai[i] + gaususSkaiciai[j]
         if (suma <= 28123) {
-            gali[suma] = true
+            galiButiSuma[suma] = true
         }
     }
 }
-// sudeti visus negalincius
-let ats = 0
+let galutineSuma = 0
 for (let i = 1; i <= 28123; i++) {
-    if (!gali[i]) {
-        ats += i
+    if (galiButiSuma[i] === false) {
+        galutineSuma = galutineSuma + i
     }
 }
-console.log(ats)
+console.log(galutineSuma)
